@@ -123,7 +123,7 @@ L3Variables = cms.PSet(
                       "         triggerObjectMatchesByCollection('hltIterL3MuonCandidates').at(0).phi ) ")
 )
 TriggerVariables = cms.PSet(L1Variables, L2Variables, L3Variables)
-AllVariables = cms.PSet(KinematicVariables, IsolationVariables, MuonIDVariables, MuonCaloVariables, TrackQualityVariables, GlobalTrackQualityVariables, StaOnlyVariables, L1Variables, L2Variables, L3Variables)
+AllVariables = cms.PSet(KinematicVariables, IsolationVariables, MuonIDVariables, TrackQualityVariables)#, L1Variables, L2Variables, L3Variables)#, MuonCaloVariables, TrackQualityVariables, GlobalTrackQualityVariables, StaOnlyVariables, L1Variables, L2Variables, L3Variables)
 
 TrackQualityFlags = cms.PSet(
     Track_HP  = cms.string("? track.isNonnull ? track.quality('highPurity') : 0"),

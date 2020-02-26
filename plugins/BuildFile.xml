@@ -27,6 +27,9 @@
   <use   name="MagneticField/Records"/>
   <use   name="RecoTracker/TkDetLayers"/>
   <use   name="HLTrigger/HLTcore"/>
+  <use   name="RecoEgamma/EgammaTools"/>
+  <use	 name="PhysicsTools/NanoAOD"/>
+
 </library>
 
 

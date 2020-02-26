@@ -42,24 +42,27 @@ void addEAMiniIso() {
         pfCombAbsActivitydBCorr = (activity_chHad + max( (double) (activity_nHad +  activity_phot -  activity_PUchHad/2) , 0.0));
         pfCombRelActivitydBCorr = pfCombAbsActivitydBCorr/pt;
                 
-        if (i < 20) {
+     /*   if (i < 20) {
             printf("muon with pt = %.2f, eta = %+5.2f:", pt, eta);
             printf("   charged hadrons %6.3f, neutral hadrons %6.3f, photons %6.3f ", chHad, nHad, phot);
             printf("   rho %6.3f, ea %6.3f", rho, ea_tot);
             printf("   pfCombAbsMiniIsoEAcorr %6.3f\n", pfCombAbsMiniIsoEACorr);
             printf("   pfCombRelMiniIsoEAcorr %6.3f\n", pfCombRelMiniIsoEACorr);
             printf("   activity charged hadrons %6.3f, PU charged hadrons %6.3f, neutral hadrons %6.3f, photons %6.3f ", activity_chHad, activity_PUchHad, activity_nHad, activity_phot);
-            printf("   pfCombAbsActivitydBCorr %6.3f\n", pfCombAbsActivitydBCorr);
-            printf("   pfCombRelActivitydBCorr %6.3f\n", pfCombRelActivitydBCorr);
-        }
+     //       printf("   pfCombAbsActivitydBCorr %6.3f\n", pfCombAbsActivitydBCorr);
+     	      printf("   pfCombRelActivitydBCorr %6.3f\n", pfCombRelActivitydBCorr);
+	*/
+     //   }
         tOut->Fill();
         //if (i > 10000) break;
+        /*
         if ((i+1) % step == 0) { 
             double totalTime = timer.RealTime()/60.; timer.Continue();
             double fraction = double(i+1)/double(n+1), remaining = totalTime*(1-fraction)/fraction;
             printf("Done %9d/%9d   %5.1f%%   (elapsed %5.1f min, remaining %5.1f min)\n", i, n, i*evDenom, totalTime, remaining); 
             fflush(stdout); 
         }
+	*/
     }
 
     tOut->AutoSave(); // according to root tutorial this is the right thing to do

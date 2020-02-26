@@ -10,7 +10,7 @@ from JetMETCorrections.Configuration.JetCorrectors_cff import ak4PFCHSL3Absolute
 
 nverticesModule = cms.EDProducer("VertexMultiplicityCounter", 
     probes = cms.InputTag("tagMuons"),
-    objects = cms.InputTag("offlinePrimaryVertices"),
+    objects = cms.InputTag("offlineSlimmedPrimaryVertices"),
     objectSelection = cms.string("!isFake && ndof > 4 && abs(z) <= 25 && position.Rho <= 2"),
 )
 
@@ -119,9 +119,30 @@ probeMuonsIsoSequence = cms.Sequence(
       ) * probeMuonsIsoValueMaps
 )
 
+muonMiniIsoNano = cms.EDProducer("MuonIsoValueMapProducer",
+	src = cms.InputTag("probeMuons"),
+	relative = cms.bool(False),
+	rho_MiniIso = cms.InputTag("fixedGridRhoFastjetAll"),
+ 	EAFile_MiniIso = cms.FileInPath("PhysicsTools/NanoAOD/data/effAreaMuons_cone03_pfNeuHadronsAndPhotons_94X.txt"),
+)
+##NOTE LEGACY EA FILES!!!!!####
+#run2_miniAOD_80XLegacy.toModify(isoForMu, src = "slimmedMuonsUpdated", EAFile_MiniIso = "PhysicsTools/NanoAOD/data/effAreaMuons_cone03_pfNeuHadronsAndPhotons_80X.txt")
+#run2_nanoAOD_94X2016.toModify(isoForMu, EAFile_MiniIso = "PhysicsTools/NanoAOD/data/effAreaMuons_cone03_pfNeuHadronsAndPhotons_80X.txt")
+
+"""
+muonMiniIsoPat = cms.EDProducer("MuonPatMiniIso",
+    probes = cms.InputTag("probeMuons"),
+    pfCandidates = cms.InputTag("packedPFCandidates"),
+    dRCandProbeVeto = cms.double(-1),
+    dRCandSoftActivityCone = cms.double(-1),
+    CandPtThreshold = cms.double(-1),
+)
+"""
+"""
 muonMiniIsoCharged = cms.EDProducer("MuonMiniIso",
     probes = cms.InputTag("probeMuons"),
-    pfCandidates = cms.InputTag("pfAllChargedHadronsPFBRECO"),
+ #   pfCandidates = cms.InputTag("pfAllChargedHadronsPFBRECO"),
+   pfCandidates = cms.InputTag("packedPFCandidates"),
     dRCandProbeVeto = cms.double(0.0001),
     dRCandSoftActivityCone = cms.double(0.4),
     CandPtThreshold = cms.double(0.0),
@@ -129,15 +150,18 @@ muonMiniIsoCharged = cms.EDProducer("MuonMiniIso",
 
 muonMiniIsoPUCharged = cms.EDProducer("MuonMiniIso",
     probes = cms.InputTag("probeMuons"),
-    pfCandidates = cms.InputTag("pfPileUpAllChargedParticlesPFBRECO"),
-    dRCandProbeVeto = cms.double(0.0001),
+  #  pfCandidates = cms.InputTag("pfPileUpAllChargedParticlesPFBRECO"),
+    pfCandidates = cms.InputTag("packedPFCandidates"),
+  #  dRCandProbeVeto = cms.double(0.0001),
+    dRCandProbeVeto = cms.double(0.01),
     dRCandSoftActivityCone = cms.double(0.4),
     CandPtThreshold = cms.double(0.0),
 )
 
 muonMiniIsoNeutrals = cms.EDProducer("MuonMiniIso",
     probes = cms.InputTag("probeMuons"),
-    pfCandidates = cms.InputTag("pfAllNeutralHadronsPFBRECO"),
+ #   pfCandidates = cms.InputTag("pfAllNeutralHadronsPFBRECO"),
+    pfCandidates = cms.InputTag("packedPFCandidates"),
     dRCandProbeVeto = cms.double(0.01),
     dRCandSoftActivityCone = cms.double(0.4),
     CandPtThreshold = cms.double(1.0),
@@ -145,12 +169,21 @@ muonMiniIsoNeutrals = cms.EDProducer("MuonMiniIso",
 
 muonMiniIsoPhotons = cms.EDProducer("MuonMiniIso",
     probes = cms.InputTag("probeMuons"),
-    pfCandidates = cms.InputTag("pfAllPhotonsPFBRECO"),
+ #   pfCandidates = cms.InputTag("pfAllPhotonsPFBRECO"),
+    pfCandidates = cms.InputTag("packedPFCandidates"),
     dRCandProbeVeto = cms.double(0.01),
     dRCandSoftActivityCone = cms.double(0.4),
     CandPtThreshold = cms.double(0.5),
 )
+#muonMiniIsoAll = cms.EDProducer("MuonMiniIsoAll",
+#    probes = cms.InputTag("probeMuons"),
+#    chiso = cms.InputTag("muonMiniIsoCharged"),
+#    nhiso = cms.InputTag("muonMiniIsoNeutrals"),
+#    giso = cms.InputTag("muonMiniIsoPhotons"),
+#    puiso = cms.InputTag("muonMiniIsoPUCharged"),
+#)
 
+"""
 
 #########################################################################################
 ##        Other modules                                                                ##
@@ -208,6 +241,11 @@ probeMultiplicities = cms.Sequence(probeMultiplicity  + probeMultiplicityTMGM + 
 bestPairByZMass = cms.EDProducer("BestPairByMass",
     pairs = cms.InputTag("tpPairs"),
     mass  = cms.double(91.2),
+)
+
+bestPairByJMass = cms.EDProducer("BestPairByMass",
+    pairs = cms.InputTag("tpPairs"),
+    mass = cms.double(3.096),
 )
 
 splitTrackTagger = cms.EDProducer("NearbyCandCountComputer",

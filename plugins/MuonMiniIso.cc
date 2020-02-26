@@ -135,7 +135,7 @@ MuonMiniIso::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       }else{
         
         activity[imu] += iP->get()->pt();
-        
+       
       }
       
     }

@@ -1,0 +1,1 @@
+dasgoclient -query="child file=/store/mc/RunIIFall17DRPremix/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/AODSIM/RECOSIMstep_94X_mc2017_realistic_v10-v1/50000/A89BB440-75E5-E711-9AB9-FA163EB468F1.root" > ./jpsiMC/sublist_3.list

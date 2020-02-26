@@ -1,0 +1,59 @@
+DEBUG 2020-02-03 18:53:20.383 UTC: 	 Running on: Linux t3.unl.edu 3.10.0-1062.9.1.el7.x86_64 #1 SMP Fri Dec 6 15:49:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2020-02-03 18:53:20.400 UTC: 	 OpenSSl version: OpenSSL 1.0.2k-fips  26 Jan 2017 (Library: OpenSSL 1.0.2d-fips 9 Jul 2015)
+DEBUG 2020-02-03 18:53:20.401 UTC: 	 Executing command: 'submit'
+DEBUG 2020-02-03 18:53:20.402 UTC: 	 Found CRAB cache file /home/t3-ku/janguian/.crab3
+DEBUG 2020-02-03 18:53:20.412 UTC: 	 Checking credentials
+DEBUG 2020-02-03 18:53:20.413 UTC: 	 Found proxy file /tmp/x509up_u5729
+DEBUG 2020-02-03 18:53:20.413 UTC: 	 Getting proxy life time left
+DEBUG 2020-02-03 18:53:20.516 UTC: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u5729 -timeleft
+ output : 43055
+
+ error: 
+ retcode : 0
+DEBUG 2020-02-03 18:53:20.620 UTC: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u5729 -actimeleft
+ output : 43055
+
+ error: 
+ retcode : 0
+DEBUG 2020-02-03 18:53:20.620 UTC: 	 Proxy valid for 11:57:35 hours
+INFO 2020-02-03 18:53:20.621 UTC: 	 Will use CRAB configuration file crabConfig_tutorial_MC_analysis.py
+DEBUG 2020-02-03 18:53:20.621 UTC: 	 Loading CRAB configuration file.
+DEBUG 2020-02-03 18:53:20.632 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2020-02-03 18:53:20.634 UTC: 	 Working area '/home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/crab/crab_projects/crab_TnP_2017_MC_Jpsi' already exists 
+Please change the requestName in the config file
+ERROR 2020-02-03 18:53:20.634 UTC: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/bin/crab", line 145, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/Commands/submit.py", line 35, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 324, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/ClientUtilities.py", line 418, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/crab/crab_projects/crab_TnP_2017_MC_Jpsi' already exists 
+Please change the requestName in the config file
+DEBUG 2020-02-03 18:53:39.240 UTC: 	 Running on: Linux t3.unl.edu 3.10.0-1062.9.1.el7.x86_64 #1 SMP Fri Dec 6 15:49:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2020-02-03 18:53:39.256 UTC: 	 OpenSSl version: OpenSSL 1.0.2k-fips  26 Jan 2017 (Library: OpenSSL 1.0.2d-fips 9 Jul 2015)
+DEBUG 2020-02-03 18:53:39.257 UTC: 	 Executing command: 'resubmit'
+DEBUG 2020-02-03 18:53:39.257 UTC: 	 Found CRAB cache file /home/t3-ku/janguian/.crab3
+ERROR 2020-02-03 18:53:39.259 UTC: 	 Cannot find .requestcache file in CRAB project directory /home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/crab/crab_projects/crab_TnP_2017_MC_Jpsi
+ERROR 2020-02-03 18:53:39.259 UTC: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/bin/crab", line 145, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/Commands/resubmit.py", line 28, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 277, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 599, in validateOptions
+    self.loadLocalCache()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 461, in loadLocalCache
+    raise ex
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/crab/crab_projects/crab_TnP_2017_MC_Jpsi

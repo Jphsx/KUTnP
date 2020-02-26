@@ -10,9 +10,10 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1000
 process.source = cms.Source("PoolSource", 
     fileNames = cms.untracked.vstring(),
 )
-#process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1))
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1))
 #process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10))
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100))
+#process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100))
+#process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(50000))
 
 process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
 process.load('Configuration.StandardSequences.MagneticField_38T_cff')
@@ -44,7 +45,8 @@ elif "CMSSW_9_4_" in os.environ['CMSSW_VERSION']:
 elif "CMSSW_10_2_" in os.environ['CMSSW_VERSION']:
     process.GlobalTag.globaltag = cms.string('102X_upgrade2018_realistic_v15')
     process.source.fileNames = [
-        '/store/mc/RunIIAutumn18DRPremix/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/AODSIM/102X_upgrade2018_realistic_v15-v1/100000/73EF8C73-4852-D044-867F-4CFA1F920AEE.root'
+        #'/store/mc/RunIIAutumn18DRPremix/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/AODSIM/102X_upgrade2018_realistic_v15-v1/100000/73EF8C73-4852-D044-867F-4CFA1F920AEE.root'
+	'file:/home/t3-ku/janguian/files/RunIISpring16_DYJetsToLL/73EF8C73-4852-D044-867F-4CFA1F920AEE.root'
     ] 
     
 
@@ -178,13 +180,19 @@ process.tpTree = cms.EDAnalyzer("TagProbeFitTreeProducer",
         mt  = cms.InputTag("probeMetMt","mt"),
         CutBasedIdGlobalHighPt_new = cms.InputTag("muonHighPt","highPtIDNew"),
         CutBasedIdGlobalHighPt_2 = cms.InputTag("muonHighPt","highPtID"),
+	#miniIsoAll = cms.InputTag("miniIsoAll", "miniIsoAll"),
+
     ),
     flags = cms.PSet(
        TrackQualityFlags,
        MuonIDFlags,
        HighPtTriggerFlags,
        HighPtTriggerFlagsDebug,
-       
+      # miniIso = cms.InputTag("miniIso") 
+      # miniIsoAll = cms.string("miniIsoCharged") 
+       #miniIsoTest1= cms.InputTag("muonMiniIsoCharged","miniIso"),
+       #miniIsoTest2= cms.InputTag("muonMiniIsoNeutrals","miniIso")
+
     ),
     tagVariables = cms.PSet(
      #   TriggerVariables, 

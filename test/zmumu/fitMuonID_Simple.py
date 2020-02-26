@@ -8,8 +8,9 @@ process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1) )
 
 process.TnP_Muon_ID = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
     ## Input, output 
-    InputFileNames = cms.vstring("root://eoscms//eos/cms/store/cmst3/user/botta/TnPtrees/tnpZ_Data.190456-193557.root",
+    InputFileNames = cms.vstring(#"root://eoscms//eos/cms/store/cmst3/user/botta/TnPtrees/tnpZ_Data.190456-193557.root",
                                  #"file:tnpZ_MC.root"
+				"/home/t3-ku/janguian/CMSSW_10_2_5/src/tnpZ_MC.root",
                                  ), ## can put more than one
     ## copy locally to be faster: xrdcp root://eoscms//eos/cms/store/cmst3/user/botta/TnPtrees/tnpZ_Data.190456-193557.root $PWD/tnpZ_Data.190456-193557.root
     ## and then set InputFileNames = cms.vstring("tnpZ_Data.190456-193557.root"), 
@@ -26,15 +27,19 @@ process.TnP_Muon_ID = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
     ),
     ## Flags you want to use to define numerator and possibly denominator
     Categories = cms.PSet(
-        PF = cms.vstring("PF Muon", "dummy[pass=1,fail=0]"),
+        #PF = cms.vstring("PF Muon", "dummy[pass=1,fail=0]"),
+	Medium = cms.vstring("Medium Muon", "dummy[pass=1,fail=0]"),	
         tag_IsoMu24_eta2p1 = cms.vstring("PF Muon", "dummy[pass=1,fail=0]"),
     ),
+    Cuts = cms.PSet(),
+
     ## What to fit
     Efficiencies = cms.PSet(
         PF_pt_eta = cms.PSet(
             UnbinnedVariables = cms.vstring("mass"),
-            EfficiencyCategoryAndState = cms.vstring("PF", "pass"), ## Numerator definition
-            BinnedVariables = cms.PSet(
+           # EfficiencyCategoryAndState = cms.vstring("PF", "pass"), ## Numerator definition
+            EfficiencyCategoryAndState = cms.vstring("Medium", "pass"),
+	    BinnedVariables = cms.PSet(
                 ## Binning in continuous variables
                 pt     = cms.vdouble( 10, 20, 30, 40, 60, 100 ),
                 abseta = cms.vdouble( 0.0, 1.2, 2.4),
@@ -56,15 +61,15 @@ process.TnP_Muon_ID = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
             "efficiency[0.9,0,1]",
             "signalFractionInPassing[0.9]"
         ),
-        vpvPlusExpo = cms.vstring(
-            "Voigtian::signal1(mass, mean1[90,80,100], width[2.495], sigma1[2,1,3])",
-            "Voigtian::signal2(mass, mean2[90,80,100], width,        sigma2[4,2,10])",
-            "SUM::signal(vFrac[0.8,0,1]*signal1, signal2)",
-            "Exponential::backgroundPass(mass, lp[-0.1,-1,0.1])",
-            "Exponential::backgroundFail(mass, lf[-0.1,-1,0.1])",
-            "efficiency[0.9,0,1]",
-            "signalFractionInPassing[0.9]"
-        ),
+#        vpvPlusExpo = cms.vstring(
+#            "Voigtian::signal1(mass, mean1[90,80,100], width[2.495], sigma1[2,1,3])",
+#            "Voigtian::signal2(mass, mean2[90,80,100], width,        sigma2[4,2,10])",
+#            "SUM::signal(vFrac[0.8,0,1]*signal1, signal2)",
+#            "Exponential::backgroundPass(mass, lp[-0.1,-1,0.1])",
+#            "Exponential::backgroundFail(mass, lf[-0.1,-1,0.1])",
+#            "efficiency[0.9,0,1]",
+#            "signalFractionInPassing[0.9]"
+#        ),
     ),
     ## How to do the fit
     binnedFit = cms.bool(True),
