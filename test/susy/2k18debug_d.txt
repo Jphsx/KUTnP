@@ -1,0 +1,14 @@
+Parent name: /store/data/Run2018B/SingleMuon/AOD/12Nov2019_UL2018-v2/270001/77AC7C47-40DD-D942-A5FF-2E3682D747A9.root
+Sources: dbs3 show
+Parent name: /store/data/Run2018B/SingleMuon/AOD/12Nov2019_UL2018-v2/270001/CCB52208-FB2C-CC48-91AE-085076496895.root
+Sources: dbs3 show
+Parent name: /store/data/Run2018B/SingleMuon/AOD/12Nov2019_UL2018-v2/270002/286455AC-B6B9-AE4F-9DD5-EAAF69B8C69F.root
+Sources: dbs3 show
+Parent name: /store/data/Run2018B/SingleMuon/AOD/12Nov2019_UL2018-v2/270003/18DBE24C-5CAF-404B-824D-939EB5A4DB50.root
+Sources: dbs3 show
+Parent name: /store/data/Run2018B/SingleMuon/AOD/12Nov2019_UL2018-v2/270003/4BEA712E-9657-B74F-88F0-373F54407F16.root
+Sources: dbs3 show
+Parent name: /store/data/Run2018B/SingleMuon/AOD/12Nov2019_UL2018-v2/270003/5EA51316-DF14-6B40-B554-B823C6B08131.root
+Sources: dbs3 show
+Parent name: /store/data/Run2018B/SingleMuon/AOD/12Nov2019_UL2018-v2/270006/4044FC01-37A2-A44D-98D4-57A83315376E.root
+Sources: dbs3 show

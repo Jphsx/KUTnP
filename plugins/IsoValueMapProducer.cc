@@ -51,8 +51,12 @@ class IsoValueMapProducer : public edm::global::EDProducer<> {
     if ((typeid(T) == typeid(pat::Muon)) || (typeid(T) == typeid(pat::Electron)) || typeid(T) == typeid(pat::IsolatedTrack)) {
       produces<edm::ValueMap<float>>("miniIsoChg");
       produces<edm::ValueMap<float>>("miniIsoAll");
+     // produces<edm::ValueMap<float>>("looseIsoFlag");//1 if pass iso ,0 if fail
       ea_miniiso_.reset(new EffectiveAreas((iConfig.getParameter<edm::FileInPath>("EAFile_MiniIso")).fullPath()));
       rho_miniiso_ = consumes<double>(iConfig.getParameter<edm::InputTag>("rho_MiniIso"));
+    }
+    if (typeid(T) == typeid(pat::Muon)){
+  //    produces<edm::ValueMap<int>>("looseIsoFlag");
     }
     if ((typeid(T) == typeid(pat::Electron))) {
       produces<edm::ValueMap<float>>("PFIsoChg");
@@ -99,7 +103,7 @@ class IsoValueMapProducer : public edm::global::EDProducer<> {
   void doMiniIso(edm::Event&) const;
   void doPFIsoEle(edm::Event&) const;
   void doPFIsoPho(edm::Event&) const;
-
+//  void doLooseFlag(edm::Event&) const;
 };
 
 //
@@ -121,16 +125,58 @@ template<> float IsoValueMapProducer<pat::Photon>::getEtaForEA(const pat::Photon
   return ph->superCluster()->eta();
 }
 
+
+
 template <typename T>
 void
 IsoValueMapProducer<T>::produce(edm::StreamID streamID, edm::Event& iEvent, const edm::EventSetup& iSetup) const
 {
 
-  if ((typeid(T) == typeid(pat::Muon)) || (typeid(T) == typeid(pat::Electron)) || typeid(T) == typeid(pat::IsolatedTrack)) { doMiniIso(iEvent); };
+ // if ((typeid(T) == typeid(pat::Muon)) || (typeid(T) == typeid(pat::Electron)) || typeid(T) == typeid(pat::IsolatedTrack)) { doMiniIso(iEvent); };
+  if ((typeid(T) == typeid(pat::Muon)) || (typeid(T) == typeid(pat::Electron)) ){ doMiniIso(iEvent); };
   if ((typeid(T) == typeid(pat::Electron))) { doPFIsoEle(iEvent); }
   if ((typeid(T) == typeid(pat::Photon))) { doPFIsoPho(iEvent); }
-
+ // if ((typeid(T) == typeid(pat::Muon)) || (typeid(T) == typeid(pat::Electron)) ){ doLooseFlag(iEvent);};
+ // if ((typeid(T) == typeid(pat::Muon))){ doLooseFlag(iEvent);};
 }
+/*
+template<typename T>
+void
+IsoValueMapProducer<T>::doLooseFlag(edm::Event& iEvent) const {}
+
+//template<typename T>
+template<>
+void
+IsoValueMapProducer<pat::Muon>::doLooseFlag(edm::Event& iEvent) const{
+  edm::Handle<edm::View<pat::Muon>> src;
+  iEvent.getByToken(src_, src);
+  unsigned int nInput = src->size(); 
+  std::vector<int> looseIsoFlag;
+  looseIsoFlag.reserve(nInput);
+  double zero = 0; 
+  for (const auto & obj : *src){
+	auto absPFiso = (obj.pfIsolationR03().sumChargedHadronPt + std::max(obj.pfIsolationR03().sumNeutralHadronEt + obj.pfIsolationR03().sumPhotonEt - obj.pfIsolationR03().sumPUPt/2.,zero));
+//	std::cout<<absPFiso<<" ";
+//    int flag;
+    if( absPFiso >= (20.+ 300./obj.pt()) ){
+ //       flag = 0;
+    }
+    else{
+  //      flag = 1;
+    }
+    looseIsoFlag.push_back(0);
+
+  }
+  //std::cout<<std::endl;
+  //std::cout<<std::endl;
+  std::unique_ptr<edm::ValueMap<int>> looseIsoV(new edm::ValueMap<int>());
+  edm::ValueMap<int>::Filler fillerLoose(*looseIsoV);
+  fillerLoose.insert(src,looseIsoFlag.begin(), looseIsoFlag.begin());
+  fillerLoose.fill();
+  iEvent.put(std::move(looseIsoV),"looseIsoFlag");
+}
+
+*/
 
 template<typename T>
 void
@@ -140,14 +186,17 @@ IsoValueMapProducer<T>::doMiniIso(edm::Event& iEvent) const{
   iEvent.getByToken(src_, src);
   edm::Handle<double> rho;
   iEvent.getByToken(rho_miniiso_,rho);
-
-  unsigned int nInput = src->size();
+ 
+  //std::vector<int> looseIsoFlag;
   
+  //double pfiso= 20;
+  //double zero = 0.0;
+  unsigned int nInput = src->size();
+  //looseIsoFlag.reserve(nInput);  
   std::vector<float> miniIsoChg, miniIsoAll;
   miniIsoChg.reserve(nInput);
   miniIsoAll.reserve(nInput);
- 
-  for (const auto & obj : *src) { 
+    for (const auto & obj : *src) { 
     auto iso = obj.miniPFIsolation();
     auto chg = iso.chargedHadronIso();
     auto neu = iso.neutralHadronIso();
@@ -158,6 +207,16 @@ IsoValueMapProducer<T>::doMiniIso(edm::Event& iEvent) const{
     float scale = relative_ ? 1.0/obj.pt() : 1;
     miniIsoChg.push_back(scale*chg);
     miniIsoAll.push_back(scale*(chg+std::max(0.0,neu+pho-(*rho)*ea)));
+
+   // pfiso = (obj.pfIsolationR03().sumChargedHadronPt + std::max(obj.pfIsolationR03().sumNeutralHadronEt + obj.pfIsolationR03().sumPhotonEt - obj.pfIsolationR03().sumPUPt/2.,zero));
+   /*if( pfiso >= (20.+ 300./obj.pt()) ){
+       looseIsoFlag.push_back(0);
+    }
+    else{
+        looseIsoFlag.push_back(0);
+    }*/
+    
+       
   }
   
   std::unique_ptr<edm::ValueMap<float>> miniIsoChgV(new edm::ValueMap<float>());
@@ -169,9 +228,17 @@ IsoValueMapProducer<T>::doMiniIso(edm::Event& iEvent) const{
   fillerAll.insert(src,miniIsoAll.begin(),miniIsoAll.end());
   fillerAll.fill();
 
-  iEvent.put(std::move(miniIsoChgV),"miniIsoChg");
+    iEvent.put(std::move(miniIsoChgV),"miniIsoChg");
   iEvent.put(std::move(miniIsoAllV),"miniIsoAll");
-}
+/* 
+  std::unique_ptr<edm::ValueMap<int>> looseIsoV(new edm::ValueMap<int>());
+  edm::ValueMap<int>::Filler fillerLoose(*looseIsoV);
+  fillerLoose.insert(src,looseIsoFlag.begin(), looseIsoFlag.begin());
+  fillerLoose.fill();
+  iEvent.put(std::move(looseIsoV),"looseIsoFlag");
+*/
+
+  }
 
 template<>
 void
@@ -324,7 +391,7 @@ typedef IsoValueMapProducer<pat::IsolatedTrack> IsoTrackIsoValueMapProducer;
 
 //define this as a plug-in
 DEFINE_FWK_MODULE(MuonIsoValueMapProducer);
-DEFINE_FWK_MODULE(EleIsoValueMapProducer);
-DEFINE_FWK_MODULE(PhoIsoValueMapProducer);
-DEFINE_FWK_MODULE(IsoTrackIsoValueMapProducer);
+//DEFINE_FWK_MODULE(EleIsoValueMapProducer);
+//DEFINE_FWK_MODULE(PhoIsoValueMapProducer);
+//DEFINE_FWK_MODULE(IsoTrackIsoValueMapProducer);
 

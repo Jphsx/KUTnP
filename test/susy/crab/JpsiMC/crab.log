@@ -1,0 +1,150 @@
+DEBUG 2020-03-09 18:57:34.706 UTC: 	 Running on: Linux t3.unl.edu 3.10.0-1062.9.1.el7.x86_64 #1 SMP Fri Dec 6 15:49:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2020-03-09 18:57:34.719 UTC: 	 OpenSSl version: OpenSSL 1.0.2k-fips  26 Jan 2017 (Library: OpenSSL 1.0.2d-fips 9 Jul 2015)
+DEBUG 2020-03-09 18:57:34.720 UTC: 	 Executing command: 'submit'
+DEBUG 2020-03-09 18:57:34.721 UTC: 	 Found CRAB cache file /home/t3-ku/janguian/.crab3
+DEBUG 2020-03-09 18:57:34.728 UTC: 	 Checking credentials
+DEBUG 2020-03-09 18:57:34.728 UTC: 	 Found proxy file /tmp/x509up_u5729
+DEBUG 2020-03-09 18:57:34.728 UTC: 	 Getting proxy life time left
+DEBUG 2020-03-09 18:57:34.831 UTC: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u5729 -timeleft
+ output : 39627
+
+ error: 
+ retcode : 0
+DEBUG 2020-03-09 18:57:34.935 UTC: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u5729 -actimeleft
+ output : 39627
+
+ error: 
+ retcode : 0
+DEBUG 2020-03-09 18:57:34.935 UTC: 	 Proxy valid for 11:00:27 hours
+INFO 2020-03-09 18:57:34.936 UTC: 	 Will use CRAB configuration file jpsimc_crab.py
+DEBUG 2020-03-09 18:57:34.936 UTC: 	 Loading CRAB configuration file.
+DEBUG 2020-03-09 18:57:34.939 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2020-03-09 18:57:34.939 UTC: 	 Working area '/home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/susy/crab/crab_projects/crab_TnP_JpsiPt82017_jpsi' already exists 
+Please change the requestName in the config file
+ERROR 2020-03-09 18:57:34.939 UTC: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/bin/crab", line 145, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/Commands/submit.py", line 35, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 324, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/ClientUtilities.py", line 418, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/susy/crab/crab_projects/crab_TnP_JpsiPt82017_jpsi' already exists 
+Please change the requestName in the config file
+DEBUG 2020-04-07 21:53:21.211 UTC: 	 Running on: Linux t3.unl.edu 3.10.0-1062.9.1.el7.x86_64 #1 SMP Fri Dec 6 15:49:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2020-04-07 21:53:21.228 UTC: 	 OpenSSl version: OpenSSL 1.0.2k-fips  26 Jan 2017 (Library: OpenSSL 1.0.2d-fips 9 Jul 2015)
+DEBUG 2020-04-07 21:53:21.228 UTC: 	 Executing command: 'submit'
+DEBUG 2020-04-07 21:53:21.229 UTC: 	 Found CRAB cache file /home/t3-ku/janguian/.crab3
+DEBUG 2020-04-07 21:53:21.247 UTC: 	 Checking credentials
+DEBUG 2020-04-07 21:53:21.248 UTC: 	 Found proxy file /tmp/x509up_u5729
+DEBUG 2020-04-07 21:53:21.248 UTC: 	 Getting proxy life time left
+DEBUG 2020-04-07 21:53:21.451 UTC: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u5729 -timeleft
+ output : 37309
+
+ error: 
+ retcode : 0
+DEBUG 2020-04-07 21:53:21.555 UTC: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u5729 -actimeleft
+ output : 37309
+
+ error: 
+ retcode : 0
+DEBUG 2020-04-07 21:53:21.555 UTC: 	 Proxy valid for 10:21:49 hours
+INFO 2020-04-07 21:53:21.555 UTC: 	 Will use CRAB configuration file jpsimc_crab.py
+DEBUG 2020-04-07 21:53:21.555 UTC: 	 Loading CRAB configuration file.
+DEBUG 2020-04-07 21:53:21.589 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2020-04-07 21:53:21.628 UTC: 	 Working area '/home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/susy/crab/crab_projects/crab_TnP_JpsiPt82017_jpsi' already exists 
+Please change the requestName in the config file
+ERROR 2020-04-07 21:53:21.628 UTC: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/bin/crab", line 145, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/Commands/submit.py", line 35, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 324, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/ClientUtilities.py", line 418, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/susy/crab/crab_projects/crab_TnP_JpsiPt82017_jpsi' already exists 
+Please change the requestName in the config file
+DEBUG 2020-11-17 21:00:45.838 UTC: 	 CRAB Client version: v3.201110
+DEBUG 2020-11-17 21:00:45.838 UTC: 	 Running on: Linux t3.unl.edu 3.10.0-1062.9.1.el7.x86_64 #1 SMP Fri Dec 6 15:49:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2020-11-17 21:00:45.838 UTC: 	 Executing command: 'submit'
+DEBUG 2020-11-17 21:00:45.839 UTC: 	 Found CRAB cache file /home/t3-ku/janguian/.crab3
+INFO 2020-11-17 21:00:45.842 UTC: 	 Will use CRAB configuration file jpsimc_crab.py
+DEBUG 2020-11-17 21:00:45.843 UTC: 	 Loading CRAB configuration file.
+ERROR 2020-11-17 21:00:45.964 UTC: 	 Error while loading CRAB configuration:
+cannot import name getUsernameFromSiteDB
+Please refer to https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3CommonErrors#Syntax_error_in_CRAB_configurati
+See the ./crab.log file for more details.
+The documentation about the CRAB configuration file can be found in https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile
+ERROR 2020-11-17 21:00:45.964 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.00/bin/crab", line 165, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.00/bin/crab", line 150, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.00/lib/CRABClient/Commands/submit.py", line 35, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.00/lib/CRABClient/Commands/SubCommand.py", line 312, in __init__
+    self.loadConfig(self.options.config, self.args)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.00/lib/CRABClient/Commands/SubCommand.py", line 90, in loadConfig
+    raise ConfigurationException(configmsg)
+ConfigurationException: Error while loading CRAB configuration:
+cannot import name getUsernameFromSiteDB
+Please refer to https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3CommonErrors#Syntax_error_in_CRAB_configurati
+See the ./crab.log file for more details.
+The documentation about the CRAB configuration file can be found in https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile
+INFO 2020-11-17 21:00:45.967 UTC: 	 Log file is /home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/susy/crab/JpsiMC/crab.log
+DEBUG 2021-01-07 17:54:40.438 UTC: 	 CRAB Client version: v3.201110
+DEBUG 2021-01-07 17:54:40.438 UTC: 	 Running on: Linux t3.unl.edu 3.10.0-1062.9.1.el7.x86_64 #1 SMP Fri Dec 6 15:49:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2021-01-07 17:54:40.438 UTC: 	 Executing command: 'submit'
+DEBUG 2021-01-07 17:54:40.445 UTC: 	 Found CRAB cache file /home/t3-ku/janguian/.crab3
+INFO 2021-01-07 17:54:40.498 UTC: 	 Will use CRAB configuration file jpsimc_crab_2016.py
+DEBUG 2021-01-07 17:54:40.498 UTC: 	 Loading CRAB configuration file.
+DEBUG 2021-01-07 17:54:40.519 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2021-01-07 17:54:40.520 UTC: 	 Working area '/home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/susy/crab/crab_projects/crab_TnP_JpsiPt82016_jpsi' already exists 
+Please change the requestName in the config file
+ERROR 2021-01-07 17:54:40.520 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.01/bin/crab", line 165, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.01/bin/crab", line 150, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.01/lib/CRABClient/Commands/submit.py", line 35, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.01/lib/CRABClient/Commands/SubCommand.py", line 316, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.01/lib/CRABClient/ClientUtilities.py", line 397, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/susy/crab/crab_projects/crab_TnP_JpsiPt82016_jpsi' already exists 
+Please change the requestName in the config file
+INFO 2021-01-07 17:54:40.524 UTC: 	 Log file is /home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/susy/crab/JpsiMC/crab.log
+DEBUG 2021-01-13 20:16:00.150 UTC: 	 CRAB Client version: v3.201110
+DEBUG 2021-01-13 20:16:00.150 UTC: 	 Running on: Linux t3.unl.edu 3.10.0-1062.9.1.el7.x86_64 #1 SMP Fri Dec 6 15:49:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2021-01-13 20:16:00.150 UTC: 	 Executing command: 'status'
+DEBUG 2021-01-13 20:16:00.151 UTC: 	 Found CRAB cache file /home/t3-ku/janguian/.crab3
+ERROR 2021-01-13 20:16:00.161 UTC: 	 Error: jpsimc_crab_2018.py is not a valid CRAB project directory.
+ERROR 2021-01-13 20:16:00.161 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.01/bin/crab", line 165, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.01/bin/crab", line 150, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.01/lib/CRABClient/Commands/status.py", line 41, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.01/lib/CRABClient/Commands/SubCommand.py", line 271, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.201110.01/lib/CRABClient/Commands/SubCommand.py", line 628, in validateOptions
+    raise ConfigurationException(msg)
+ConfigurationException: [91mError[0m: jpsimc_crab_2018.py is not a valid CRAB project directory.
+INFO 2021-01-13 20:16:00.164 UTC: 	 Log file is /home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/susy/crab/JpsiMC/crab.log

@@ -1,0 +1,18 @@
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv3/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_94X_mcRun2_asymptotic_v3_ext1-v2/120000/007A2300-43DF-E811-A43F-842B2B688F18.root ./mini.root
+
+
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16DR80Premix/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/110000/04938AFA-A8B1-E611-B20A-0CC47A7E6A8A.root ./aod1.root
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16DR80Premix/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/110000/10A7B2F8-A8B1-E611-927E-E41D2D08E0C0.root ./aod2.root
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16DR80Premix/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/110000/240FE0FD-86B1-E611-BE37-002590DB9216.root ./aod3.root
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16DR80Premix/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/110000/401B3F1C-B9B1-E611-A3E8-0CC47A7E6A8A.root ./aod4.root
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16DR80Premix/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/110000/481C5EFF-ADB1-E611-A31A-0CC47A7E6A8A.root ./aod5.root
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16DR80Premix/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/110000/580712FB-A8B1-E611-973C-0CC47A7E6A8A.root ./aod6.root
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16DR80Premix/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/110000/5AB41C05-A9B1-E611-A1F9-0CC47A7E6A54.root ./aod7.root
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16DR80Premix/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/110000/628C51FA-A8B1-E611-86AD-E41D2D08E0C0.root ./aod8.root
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16DR80Premix/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/110000/70658BF7-A8B1-E611-AA56-F45214939730.root ./aod9.root
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16DR80Premix/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/110000/80F7EA9B-F3B1-E611-A2F9-0CC47A7E69CE.root ./aod10.root
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16DR80Premix/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/110000/A005834F-89B1-E611-A89C-0CC47A7FC350.root ./aod11.root
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16DR80Premix/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/110000/D45CBC97-90B1-E611-93C6-0CC47A7FC844.root ./aod12.root
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16DR80Premix/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/110000/DA2BD004-A9B1-E611-81A7-0CC47A7E6A54.root ./aod13.root
+xrdcp root://cmsxrootd.fnal.gov//store/mc/RunIISummer16DR80Premix/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/110000/E037C27F-DEB1-E611-9903-0CC47A7FC378.root ./aod14.root
+

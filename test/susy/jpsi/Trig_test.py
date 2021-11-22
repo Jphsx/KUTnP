@@ -7,7 +7,7 @@ process = cms.Process("TagProbe")
 options = VarParsing.VarParsing('analysis')
 #options.inputFiles = 'empty1.root'
 #options.secondaryInputFiles = 'empty2.root'
-
+options.outputFile = "abc.root"
 options.parseArguments()
 
 
@@ -66,13 +66,13 @@ process.noScraping = cms.EDFilter("FilterOutScraping",
 )
 #process.fastFilter = cms.Sequence(process.goodVertexFilter + process.noScraping)
 
-process.load("HLTrigger.HLTfilters.triggerResultsFilter_cfi")
-process.triggerResultsFilter.triggerConditions = cms.vstring( 'HLT_Mu*_L2Mu*' )
-process.triggerResultsFilter.l1tResults = ''
-process.triggerResultsFilter.throw = True
-process.triggerResultsFilter.hltResults = cms.InputTag( "TriggerResults", "", "HLT" )
-process.HLTMu   = process.triggerResultsFilter.clone(triggerConditions = [ 'HLT_Mu*_L2Mu*' ])
-process.HLTBoth = process.triggerResultsFilter.clone(triggerConditions = [ 'HLT_Mu*_L2Mu*', 'HLT_Mu*_Track*_Jpsi*' ])
+#process.load("HLTrigger.HLTfilters.triggerResultsFilter_cfi")
+#process.triggerResultsFilter.triggerConditions = cms.vstring( 'HLT_Mu*_L2Mu*' )
+#process.triggerResultsFilter.l1tResults = ''
+#process.triggerResultsFilter.throw = True
+#process.triggerResultsFilter.hltResults = cms.InputTag( "TriggerResults", "", "HLT" )
+#process.HLTMu   = process.triggerResultsFilter.clone(triggerConditions = [ 'HLT_Mu*_L2Mu*' ])
+#process.HLTBoth = process.triggerResultsFilter.clone(triggerConditions = [ 'HLT_Mu*_L2Mu*', 'HLT_Mu*_Track*_Jpsi*' ])
 
 
 
@@ -223,7 +223,11 @@ process.tagAndProbe = cms.Path(
 
 
 #process.TFileService = cms.Service("TFileService", fileName = cms.string("tnpJ_MC.root"))
-process.TFileService = cms.Service("TFileService", fileName = cms.string("triggerMatchTest_MC.root"))
+#process.TFileService = cms.Service("TFileService", fileName = cms.string("triggerMatchTest_MC.root"))
+#process.TFileService = cms.Service("TFileService", fileName = options.outputFile )
+process.TFileService = cms.Service("TFileService", fileName = cms.string(options.outputFile) )
+
+"""
 if True: # enable and do cmsRun tp_from_aod_MC.py /eos/path/to/run/on [ extra_postfix ] to run on all files in that eos path 
     import sys
     args = sys.argv[1:]
@@ -240,3 +244,4 @@ if True: # enable and do cmsRun tp_from_aod_MC.py /eos/path/to/run/on [ extra_po
             process.TFileService.fileName = "tnpZ_MC_%s.root" % scenario
     if len(args) > 1:
         process.TFileService.fileName = process.TFileService.fileName.value().replace(".root", ".%s.root" % args[1])
+"""

@@ -11,11 +11,14 @@ process.TnP_Muon_ID = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
     InputFileNames = cms.vstring(#"root://eoscms//eos/cms/store/cmst3/user/botta/TnPtrees/tnpZ_Data.190456-193557.root",
                                  #"file:tnpZ_MC.root"
 				#"/home/t3-ku/janguian/CMSSW_10_2_5/src/tnpZ_MC.root",
-				'/home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/susy/zmumu/tnpZ_Data.root'
-                                 ), ## can put more than one
+				#'/home/t3-ku/janguian/CMSSW_10_2_5/src/MuonAnalysis/TagAndProbe/test/susy/zmumu/tnpZ_Data.root'
+				#'/home/t3-ku/janguian/jsingera/TnP/SingleMuon/TnP_SingleMuon2017C_zmumu_HADD/TnP_SingleMuon2017C_zmumu_ALL.root'
+                                #'/home/t3-ku/janguian/jsingera/TnP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/TnP_ZmumuM502017_zmumu/200311_001036/0000/zmctrigtest_93.root'
+				'/home/t3-ku/janguian/HADD/tempstorage/TnP_SingleMuon2017C_zmumu_1.root'
+				 ), ## can put more than one
     ## copy locally to be faster: xrdcp root://eoscms//eos/cms/store/cmst3/user/botta/TnPtrees/tnpZ_Data.190456-193557.root $PWD/tnpZ_Data.190456-193557.root
     ## and then set InputFileNames = cms.vstring("tnpZ_Data.190456-193557.root"), 
-    OutputFileName = cms.string("TnPZ_susyID_Data.root"),
+    OutputFileName = cms.string("./datafits/TnPZ_susyID_GOLDMINI_Data.root"),
     InputTreeName = cms.string("fitter_tree"), 
     InputDirectoryName = cms.string("tpTree"),  
     ## Variables for binning
@@ -26,13 +29,13 @@ process.TnP_Muon_ID = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         pair_dz = cms.vstring("#Deltaz between two muons", "-100", "100", "cm"),
 	SIP = cms.vstring("3d impact sig.", "0", "500", ""),
 	miniIsoAll = cms.vstring("abs miniIso EA", "0", "500", "GeV/c^{2}"),
-
+	tag_SIP = cms.vstring("(tag) 3d impact sig. ", "0", "6", ""),
     ),
     ## Flags you want to use to define numerator and possibly denominator
     Categories = cms.PSet(
         #PF = cms.vstring("PF Muon", "dummy[pass=1,fail=0]"),
 	Medium = cms.vstring("Medium Muon", "dummy[pass=1,fail=0]"),	
-#       tag_IsoMu24_eta2p1 = cms.vstring("Medium Muon", "dummy[pass=1,fail=0]"),i
+       tag_IsoMu24_eta2p1 = cms.vstring("isomu24eta2p1", "dummy[pass=1,fail=0]"),
     ),
     Cuts = cms.PSet(
 	SIP4 = cms.vstring("SIP4", "SIP", "4"),
@@ -45,15 +48,21 @@ process.TnP_Muon_ID = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         Medium_pt_eta = cms.PSet(
             UnbinnedVariables = cms.vstring("mass"),
            # EfficiencyCategoryAndState = cms.vstring("PF", "pass"), ## Numerator definition
-            EfficiencyCategoryAndState = cms.vstring("Medium", "pass", "SIP4", "below", "Mini", "below"),
+         #   EfficiencyCategoryAndState = cms.vstring("Medium", "pass", "SIP4", "below", "Mini", "below"),
+	    #EfficiencyCategoryAndState = cms.vstring("Medium", "pass"),
+	    #EfficiencyCategoryAndState = cms.vstring("SIP4","below"),
+	    EfficiencyCategoryAndState = cms.vstring("Mini", "below"),
+	 #    EfficiencyCategoryAndState = cms.vstring("Medium", "pass", "SIP4", "below"),
 	    BinnedVariables = cms.PSet(
                 ## Binning in continuous variables
-                pt     = cms.vdouble( 10, 20, 30, 40, 60, 100 ),
+                pt     = cms.vdouble(2,4,6,8, 10, 20, 30, 40, 60, 100 ),
                 abseta = cms.vdouble( 0.0, 1.2, 2.4),
                 ## flags and conditions required at the denominator, 
                # tag_IsoMu24_eta2p1 = cms.vstring("pass"), ## i.e. use only events for which this flag is true
-                pair_dz = cms.vdouble(-1.,1.)             ## and for which -1.0 < dz < 1.0
-
+                pair_dz = cms.vdouble(-1.,1.),            ## and for which -1.0 < dz < 1.0
+		tag_IsoMu24_eta2p1 = cms.vstring("pass"),	
+		Medium = cms.vstring("pass"),
+		SIP = cms.vdouble(0.,4.),
             ),
             BinToPDFmap = cms.vstring("vpvPlusExpo"), ## PDF to use, as defined below
         )

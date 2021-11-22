@@ -1,0 +1,3 @@
+
+switching to newer dataset from v2 (which has "error file exists") to v3
+/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIISummer16MiniAODv3-PUMoriond17_94X_mcRun2_asymptotic_v3_ext1-v2/MINIAODSIM

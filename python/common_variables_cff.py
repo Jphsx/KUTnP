@@ -17,6 +17,8 @@ IsolationVariables = cms.PSet(
     relHcalIso = cms.string("isolationR03.hadEt/pt"),
     combRelIso = cms.string("(isolationR03.emEt + isolationR03.hadEt + isolationR03.sumPt)/pt"),
 
+
+
     chargedHadIso03 = cms.string("pfIsolationR03().sumChargedHadronPt"),
     puIso03 = cms.string("pfIsolationR03().sumPUPt"),
     neutralHadIso03 = cms.string("pfIsolationR03().sumNeutralHadronEt"),
@@ -27,6 +29,14 @@ IsolationVariables = cms.PSet(
     combRelIsoPF03 = cms.string("(pfIsolationR03().sumChargedHadronPt + pfIsolationR03().sumNeutralHadronEt + pfIsolationR03().sumPhotonEt)/pt"),
     combRelIsoPF03dBeta = cms.string("(pfIsolationR03().sumChargedHadronPt + max(pfIsolationR03().sumNeutralHadronEt + pfIsolationR03().sumPhotonEt - pfIsolationR03().sumPUPt/2,0.0))/pt"),
 #    combRelIsoPF03HT = cms.string("(pfIsolationR03().sumChargedHadronPt + pfIsolationR03().sumNeutralHadronEtHighThreshold + pfIsolationR03().sumPhotonEtHighThreshold)/pt"),
+
+##03 pf iso from nano aod
+    RelPFIso_All = cms.string("(pfIsolationR03().sumChargedHadronPt + max(pfIsolationR03().sumNeutralHadronEt + pfIsolationR03().sumPhotonEt - pfIsolationR03().sumPUPt/2,0.0))/pt"),
+    AbsPFIso_All = cms.string("(pfIsolationR03().sumChargedHadronPt + max(pfIsolationR03().sumNeutralHadronEt + pfIsolationR03().sumPhotonEt - pfIsolationR03().sumPUPt/2,0.0))"),
+## very loose bool flag for iso
+    LoosePFIso = cms.string("?(pfIsolationR03().sumChargedHadronPt + max(pfIsolationR03().sumNeutralHadronEt + pfIsolationR03().sumPhotonEt - pfIsolationR03().sumPUPt/2,0.0)) >= (20.+300./pt())?0:1"),
+   
+
 
     chargedHadIso04 = cms.string("pfIsolationR04().sumChargedHadronPt"),
     puIso04 = cms.string("pfIsolationR04().sumPUPt"),
@@ -62,6 +72,10 @@ TrackQualityVariables = cms.PSet(
     # 2D variables
     dB          = cms.string("dB"),
     edB         = cms.string("edB"),
+    dxy = cms.string('dB("PV2D")'),
+    dz = cms.string('dB("PVDZ")'),
+    dz_bestTrack = cms.string('bestTrack().dz'),
+
     # 3D variables
     IP = cms.string('abs(dB("PV3D"))'),
     IPError = cms.string('edB("PV3D")'),
@@ -101,26 +115,26 @@ L1Variables = cms.PSet(
     l1eta  = cms.string("? userCand('muonL1Info').isNull ? 0 : userCand('muonL1Info').eta"),
     l1phi  = cms.string("? userCand('muonL1Info').isNull ? 0 : userCand('muonL1Info').phi"),
     l1q  = cms.string("userInt('muonL1Info:quality')"),
-    l1dr = cms.string("userFloat('muonL1Info:deltaR')"),
-    l1dphi = cms.string("userFloat('muonL1Info:deltaPhi')"),
+#    l1dr = cms.string("userFloat('muonL1Info:deltaR')"),
+#    l1dphi = cms.string("userFloat('muonL1Info:deltaPhi')"),
     l1ptByQ = cms.string("? userCand('muonL1InfoQuality').isNull ? 0 : userCand('muonL1InfoQuality').pt"),
     l1qByQ  = cms.string("userInt('muonL1InfoQuality:quality')"),
-    l1drByQ = cms.string("userFloat('muonL1InfoQuality:deltaR')"),
+#    l1drByQ = cms.string("userFloat('muonL1InfoQuality:deltaR')"),
 )
 L2Variables = cms.PSet(
     l2pt  = cms.string("? triggerObjectMatchesByCollection('hltL2MuonCandidates').empty() ? 0 : triggerObjectMatchesByCollection('hltL2MuonCandidates').at(0).pt"),
     l2eta = cms.string("? triggerObjectMatchesByCollection('hltL2MuonCandidates').empty() ? 0 : triggerObjectMatchesByCollection('hltL2MuonCandidates').at(0).eta"),
-    l2dr  = cms.string("? triggerObjectMatchesByCollection('hltL2MuonCandidates').empty() ? 999 : "+
-                      " deltaR( eta, phi, " +
-                      "         triggerObjectMatchesByCollection('hltL2MuonCandidates').at(0).eta, "+
-                      "         triggerObjectMatchesByCollection('hltL2MuonCandidates').at(0).phi ) ")
+#    l2dr  = cms.string("? triggerObjectMatchesByCollection('hltL2MuonCandidates').empty() ? 999 : "+
+ #                     " deltaR( eta, phi, " +
+  #                    "         triggerObjectMatchesByCollection('hltL2MuonCandidates').at(0).eta, "+
+   #                   "         triggerObjectMatchesByCollection('hltL2MuonCandidates').at(0).phi ) ")
 )
 L3Variables = cms.PSet(
     l3pt = cms.string("? triggerObjectMatchesByCollection('hltIterL3MuonCandidates').empty() ? 0 : triggerObjectMatchesByCollection('hltIterL3MuonCandidates').at(0).pt"),
-    l3dr = cms.string("? triggerObjectMatchesByCollection('hltIterL3MuonCandidates').empty() ? 999 : "+
-                      " deltaR( eta, phi, " +
-                      "         triggerObjectMatchesByCollection('hltIterL3MuonCandidates').at(0).eta, "+
-                      "         triggerObjectMatchesByCollection('hltIterL3MuonCandidates').at(0).phi ) ")
+ #   l3dr = cms.string("? triggerObjectMatchesByCollection('hltIterL3MuonCandidates').empty() ? 999 : "+
+ #                     " deltaR( eta, phi, " +
+  #                    "         triggerObjectMatchesByCollection('hltIterL3MuonCandidates').at(0).eta, "+
+   #                   "         triggerObjectMatchesByCollection('hltIterL3MuonCandidates').at(0).phi ) ")
 )
 TriggerVariables = cms.PSet(L1Variables, L2Variables, L3Variables)
 AllVariables = cms.PSet(KinematicVariables, IsolationVariables, MuonIDVariables, TrackQualityVariables)#, L1Variables, L2Variables, L3Variables)#, MuonCaloVariables, TrackQualityVariables, GlobalTrackQualityVariables, StaOnlyVariables, L1Variables, L2Variables, L3Variables)
@@ -195,7 +209,12 @@ MuonIDFlags = cms.PSet(
     MiniIsoTight           = cms.string("passed(1048576)"),
     MiniIsoVeryTight       = cms.string("passed(2097152)")
 )
-
+jpsitestTrigFlag = cms.PSet(
+#	IsoTkMu18        = cms.string("!triggerObjectMatchesByPath('HLT_IsoTkMu18_v*',1,0).empty()"),
+    #2018
+    Mu7p5_Track2_Jpsi = cms.string("!triggerObjectMatchesByPath('HLT_Mu7p5_Track2_Jpsi_v*',1,0).empty()"),
+    Mu8 = cms.string("!triggerObjectMatchesByPath('HLT_Mu8_v*',1,0).empty()"),
+)
 HighPtTriggerFlags = cms.PSet(
    # legacy
    #Mu9       = cms.string("!triggerObjectMatchesByPath('HLT_Mu9').empty()"),
@@ -254,8 +273,8 @@ HighPtTriggerFlags = cms.PSet(
    IsoTkMu24_eta2p1 = cms.string("!triggerObjectMatchesByPath('HLT_IsoTkMu24_eta2p1_v*',1,0).empty()"),
    HLT_TkMu50 = cms.string("!triggerObjectMatchesByPath('HLT_TkMu50_v*',1,0).empty()"),
 
-   OldMu100         = cms.string("!triggerObjectMatchesByPath('HLT_OldMu100_v*',1,0).empty()"),
-   TkMu100          = cms.string("!triggerObjectMatchesByPath('HLT_TkMu100_v*',1,0).empty()"),
+   #OldMu100         = cms.string("!triggerObjectMatchesByPath('HLT_OldMu100_v*',1,0).empty()"),
+   #TkMu100          = cms.string("!triggerObjectMatchesByPath('HLT_TkMu100_v*',1,0).empty()"),
 
    # To take care of the presence or not of the dz filter, we are requiring three flags for each of the main un-prescaled DoubleMuon Triggers
    # Mu17 leg, Mu8 leg, and (Mu17 leg && fired path)
@@ -276,28 +295,62 @@ HighPtTriggerFlags = cms.PSet(
    #DoubleMu13Mu8NoDZ_Mu8leg = cms.string("!triggerObjectMatchesByFilter('hltL3pfL1DoubleMu10MuOpenOR3p5L1f0L2pf0L3PreFiltered8').empty()"),
 
    # 2015 version
-   DoubleIsoMu17Mu8dZ_Mu17leg = cms.string("!triggerObjectMatchesByPath('HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_v*',1,0).empty() && !triggerObjectMatchesByFilter('hltL3fL1DoubleMu155fFiltered17').empty()"),
-   DoubleIsoMu17Mu8_IsoMu17leg = cms.string("!triggerObjectMatchesByFilter('hltDiMuon178RelTrkIsoFiltered0p4').empty() && !triggerObjectMatchesByFilter('hltL3fL1DoubleMu155fFiltered17').empty()"),
-   DoubleIsoMu17Mu8_Mu17leg = cms.string("!triggerObjectMatchesByFilter('hltL3fL1DoubleMu155fFiltered17').empty()"),
-   DoubleIsoMu17Mu8_IsoMu8leg = cms.string("!triggerObjectMatchesByFilter('hltDiMuon178RelTrkIsoFiltered0p4').empty() && (!triggerObjectMatchesByFilter('hltL3fL1DoubleMu155fPreFiltered8').empty())"),
-   DoubleIsoMu17Mu8_Mu8leg = cms.string("(!triggerObjectMatchesByFilter('hltL3fL1DoubleMu155fPreFiltered8').empty())"),
+   #DoubleIsoMu17Mu8dZ_Mu17leg = cms.string("!triggerObjectMatchesByPath('HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_v*',1,0).empty() && !triggerObjectMatchesByFilter('hltL3fL1DoubleMu155fFiltered17').empty()"),
+   #DoubleIsoMu17Mu8_IsoMu17leg = cms.string("!triggerObjectMatchesByFilter('hltDiMuon178RelTrkIsoFiltered0p4').empty() && !triggerObjectMatchesByFilter('hltL3fL1DoubleMu155fFiltered17').empty()"),
+   #DoubleIsoMu17Mu8_Mu17leg = cms.string("!triggerObjectMatchesByFilter('hltL3fL1DoubleMu155fFiltered17').empty()"),
+   #DoubleIsoMu17Mu8_IsoMu8leg = cms.string("!triggerObjectMatchesByFilter('hltDiMuon178RelTrkIsoFiltered0p4').empty() && (!triggerObjectMatchesByFilter('hltL3fL1DoubleMu155fPreFiltered8').empty())"),
+   #DoubleIsoMu17Mu8_Mu8leg = cms.string("(!triggerObjectMatchesByFilter('hltL3fL1DoubleMu155fPreFiltered8').empty())"),
 
-   DoubleIsoMu17TkMu8dZ_Mu17 = cms.string("!triggerObjectMatchesByPath('HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ_v*',1,0).empty() && !triggerObjectMatchesByFilter('hltL3fL1sDoubleMu114L1f0L2f10L3Filtered17').empty()"),
-   DoubleIsoMu17TkMu8_IsoMu17leg = cms.string("!triggerObjectMatchesByFilter('hltDiMuonGlb17Trk8RelTrkIsoFiltered0p4').empty() && !triggerObjectMatchesByFilter('hltL3fL1sDoubleMu114L1f0L2f10L3Filtered17').empty()"),
-   DoubleIsoMu17TkMu8_Mu17leg = cms.string("!triggerObjectMatchesByFilter('hltL3fL1sDoubleMu114L1f0L2f10L3Filtered17').empty()"),
-   DoubleIsoMu17TkMu8_IsoMu8leg = cms.string("!triggerObjectMatchesByFilter('hltDiMuonGlb17Trk8RelTrkIsoFiltered0p4').empty() && !triggerObjectMatchesByFilter('hltDiMuonGlbFiltered17TrkFiltered8').empty()"),
-   DoubleIsoMu17TkMu8_TkMu8leg = cms.string("!triggerObjectMatchesByFilter('hltDiMuonGlbFiltered17TrkFiltered8').empty()"),
+   #DoubleIsoMu17TkMu8dZ_Mu17 = cms.string("!triggerObjectMatchesByPath('HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ_v*',1,0).empty() && !triggerObjectMatchesByFilter('hltL3fL1sDoubleMu114L1f0L2f10L3Filtered17').empty()"),
+   #DoubleIsoMu17TkMu8_IsoMu17leg = cms.string("!triggerObjectMatchesByFilter('hltDiMuonGlb17Trk8RelTrkIsoFiltered0p4').empty() && !triggerObjectMatchesByFilter('hltL3fL1sDoubleMu114L1f0L2f10L3Filtered17').empty()"),
+   #DoubleIsoMu17TkMu8_Mu17leg = cms.string("!triggerObjectMatchesByFilter('hltL3fL1sDoubleMu114L1f0L2f10L3Filtered17').empty()"),
+   #DoubleIsoMu17TkMu8_IsoMu8leg = cms.string("!triggerObjectMatchesByFilter('hltDiMuonGlb17Trk8RelTrkIsoFiltered0p4').empty() && !triggerObjectMatchesByFilter('hltDiMuonGlbFiltered17TrkFiltered8').empty()"),
+   #DoubleIsoMu17TkMu8_TkMu8leg = cms.string("!triggerObjectMatchesByFilter('hltDiMuonGlbFiltered17TrkFiltered8').empty()"),
 
 
    # 2017 no-prescale double muon DZ with mass cut
-   DoubleIsoMu17Mu8dZ_Mass3p8 = cms.string("!triggerObjectMatchesByPath('HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8_v*',1,0).empty()"),
-   DoubleIsoMu17Mu8dZ_Mass8 = cms.string("!triggerObjectMatchesByPath('HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8_v*',1,0).empty()"),
+   #DoubleIsoMu17Mu8dZ_Mass3p8 = cms.string("!triggerObjectMatchesByPath('HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8_v*',1,0).empty()"),
+   #DoubleIsoMu17Mu8dZ_Mass8 = cms.string("!triggerObjectMatchesByPath('HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8_v*',1,0).empty()"),
 
    #monitoring of the Mu30TkMu11 path
-   DoubleMu30TkMu11 = cms.string("!triggerObjectMatchesByPath('HLT_Mu30_TkMu11_v*',1,0).empty()"),
-   DoubleMu30TkMu11_Mu30leg = cms.string("!triggerObjectMatchesByFilter('hltL3fL1sMu16orMu25L1f0L2f25L3Filtered30').empty()"),
-   DoubleMu30TkMu11_TkMu11leg = cms.string("!triggerObjectMatchesByFilter('hltDiMuonGlbFiltered30TrkFiltered11').empty()"),
+   #DoubleMu30TkMu11 = cms.string("!triggerObjectMatchesByPath('HLT_Mu30_TkMu11_v*',1,0).empty()"),
+   #DoubleMu30TkMu11_Mu30leg = cms.string("!triggerObjectMatchesByFilter('hltL3fL1sMu16orMu25L1f0L2f25L3Filtered30').empty()"),
+   #DoubleMu30TkMu11_TkMu11leg = cms.string("!triggerObjectMatchesByFilter('hltDiMuonGlbFiltered30TrkFiltered11').empty()"),
 
+)
+JpsiTestTrigger = cms.PSet(
+ Mu17= cms.string("!triggerObjectMatchesByPath('HLT_Mu17_v*',1,0).empty()"),
+ IsoMu18 = cms.string("!triggerObjectMatchesByPath('HLT_IsoMu18_v*',1,0).empty()"),
+)
+
+jpsi18 = cms.PSet(
+	Dimuon0_Jpsi3p5_Muon2 = cms.string("!triggerObjectMatchesByPath('HLT_Dimuon0_Jpsi3p5_Muon2_v*',1,0).empty()"),
+	Dimuon25_Jpsi_noCorrL1 = cms.string("!triggerObjectMatchesByPath('HLT_Dimuon25_Jpsi_noCorrL1_v*',1,0).empty()"),
+	Dimuon25_Jpsi = cms.string("!triggerObjectMatchesByPath('HLT_Dimuon25_Jpsi_v*',1,0).empty()"),
+	DoubleMu2_Jpsi_DoubleTkMu0_Phi = cms.string("!triggerObjectMatchesByPath('HLT_DoubleMu2_Jpsi_DoubleTkMu0_Phi_v*',1,0).empty()"),
+	DoubleMu2_Jpsi_DoubleTrk1_Phi1p05 = cms.string("!triggerObjectMatchesByPath('HLT_DoubleMu2_Jpsi_DoubleTrk1_Phi1p05_v*',1,0).empty()"),
+	DoubleMu4_3_Bs = cms.string("!triggerObjectMatchesByPath('HLT_DoubleMu4_3_Bs_v*',1,0).empty()"),
+	Mu30_TkMu0_Psi = cms.string("!triggerObjectMatchesByPath('HLT_Mu30_TkMu0_Psi_v*',1,0).empty()"),
+	Mu7p5_L2Mu2_Jpsi = cms.string("!triggerObjectMatchesByPath('HLT_Mu7p5_L2Mu2_Jpsi_v*',1,0).empty()"),
+	Mu7p5_Track2_Jpsi = cms.string("!triggerObjectMatchesByPath('HLT_Mu7p5_Track2_Jpsi_v*',1,0).empty()"),
+	Mu7p5_Track3p5_Jpsi = cms.string("!triggerObjectMatchesByPath('HLT_Mu7p5_Track3p5_Jpsi_v*',1,0).empty()"),
+	Mu7p5_Track7_Jpsi = cms.string("!triggerObjectMatchesByPath('HLT_Mu7p5_Track7_Jpsi_v*',1,0).empty()")
+)
+jpsi17 = cms.PSet(
+
+)
+jpsi16 = cms.PSet(
+	
+	Dimuon0_Jpsi_Muon = cms.string("!triggerObjectMatchesByPath('HLT_Dimuon0_Jpsi_Muon_v*',1,0).empty()"),
+	Dimuon0er16_Jpsi_NoOS_NoVertexing = cms.string("!triggerObjectMatchesByPath('HLT_Dimuon0er16_Jpsi_NoOS_NoVertexing_v*',1,0).empty()"),
+	Dimuon13_PsiPrime = cms.string("!triggerObjectMatchesByPath('HLT_Dimuon13_PsiPrime_v*',1,0).empty()"),
+	Dimuon16_Jpsi = cms.string("!triggerObjectMatchesByPath('HLT_Dimuon16_Jpsi_v*',1,0).empty()"),
+	Dimuon20_Jpsi = cms.string("!triggerObjectMatchesByPath('HLT_Dimuon20_Jpsi_v*',1,0).empty()"),
+	Dimuon6_Jpsi_NoVertexing = cms.string("!triggerObjectMatchesByPath('HLT_Dimuon6_Jpsi_NoVertexing_v*',1,0).empty()"),
+	Mu7p5_L2Mu2_Jpsi = cms.string("!triggerObjectMatchesByPath('HLT_Mu7p5_L2Mu2_Jpsi_v*',1,0).empty()"),
+        Mu7p5_Track2_Jpsi = cms.string("!triggerObjectMatchesByPath('HLT_Mu7p5_Track2_Jpsi_v*',1,0).empty()"),
+        Mu7p5_Track3p5_Jpsi = cms.string("!triggerObjectMatchesByPath('HLT_Mu7p5_Track3p5_Jpsi_v*',1,0).empty()"),
+        Mu7p5_Track7_Jpsi = cms.string("!triggerObjectMatchesByPath('HLT_Mu7p5_Track7_Jpsi_v*',1,0).empty()")
 )
 HighPtTriggerFlagsDebug = cms.PSet(
    # --- the ones commented out don't save tags ---
@@ -318,7 +371,7 @@ HighPtTriggerFlagsDebug = cms.PSet(
    DiMuonGlb17Glb8RelTrkIsoFiltered0p4 = cms.string("!triggerObjectMatchesByFilter('hltDiMuonGlb17Glb8RelTrkIsoFiltered0p4').empty()"),
    L2fL1sDoubleMu114L1f0OneMuL2Filtered10 = cms.string("!triggerObjectMatchesByFilter('hltL2fL1sDoubleMu114L1f0OneMuL2Filtered10').empty()"),
    L3fL1sDoubleMu114L1f0L2f10L3Filtered17 = cms.string("!triggerObjectMatchesByFilter('hltL3fL1sDoubleMu114L1f0L2f10L3Filtered17').empty()"),
-   L3fL1sMu16L1f0L2f10QL3Filtered18Q = cms.string("!triggerObjectMatchesByFilter('hltL3fL1sMu16L1f0L2f10QL3Filtered18Q').empty()"),
+   
    L3fL1sMu16L1f0L2f10QL3Filtered18QL3pfecalIsoRhoFilteredEB0p11EE0p08 = cms.string("!triggerObjectMatchesByFilter('hltL3fL1sMu16L1f0L2f10QL3Filtered18QL3pfecalIsoRhoFilteredEB0p11EE0p08').empty()"),
    L3fL1sMu16L1f0L2f10QL3Filtered18QL3pfhcalIsoRhoFilteredHB0p21HE0p22 = cms.string("!triggerObjectMatchesByFilter('hltL3fL1sMu16L1f0L2f10QL3Filtered18QL3pfhcalIsoRhoFilteredHB0p21HE0p22').empty()"),
    L3crIsoL1sMu16L1f0L2f10QL3f18QL3trkIsoFiltered0p09 = cms.string("!triggerObjectMatchesByFilter('hltL3crIsoL1sMu16L1f0L2f10QL3f18QL3trkIsoFiltered0p09').empty()"),
@@ -326,7 +379,7 @@ HighPtTriggerFlagsDebug = cms.PSet(
    #add the control path HLT_Mu17_TrkIsoVVL
    hltL2fL1sMu10lqL1f0L2Filtered10 = cms.string("!triggerObjectMatchesByFilter('hltL2fL1sMu10lqL1f0L2Filtered10').empty()"),
    hltL3fL1sMu10lqL1f0L2f10L3Filtered17 = cms.string("!triggerObjectMatchesByFilter('hltL3fL1sMu10lqL1f0L2f10L3Filtered17').empty()"),
-   hltL3fL1sMu1lqL1f0L2f10L3Filtered17TkIsoFiltered0p4 = cms.string("!triggerObjectMatchesByFilter('hltL3fL1sMu1lqL1f0L2f10L3Filtered17TkIsoFiltered0p4').empty()"),
+   
 
    #add the muon 20 isolation variables
    hltL2fL1sMu18L1f0L2Filtered10Q = cms.string("!triggerObjectMatchesByFilter('hltL2fL1sMu18L1f0L2Filtered10Q').empty()"),
@@ -368,7 +421,12 @@ HighPtTriggerFlagsDebug = cms.PSet(
 
 )
 
-
+LowPtTrig = cms.PSet(
+    DoubleMu4_L1L2 = cms.string(        "!triggerObjectMatchesByCollection('hltL2MuonCandidates').empty() && "+
+                                        "(triggerObjectMatchesByCollection('hltL2MuonCandidates').at(0).hasFilterLabel('hltL2fL1sL1DoubleMu0er16ORL1DoubleMu10MuOpenL1f0L2PreFiltered0') || "+
+                                        " triggerObjectMatchesByCollection('hltL2MuonCandidates').at(0).hasFilterLabel('hltL2fL1sL1DoubleMu0er16IorDoubleMu0er16OSIorL1DoubleMu10MuOpenL1f0L2PreFiltered0'))"
+                                        ),
+)
 LowPtTriggerFlagsPhysics = cms.PSet(
     ## L2 filters
     Dimuon16_L1L2 = cms.string(         "!triggerObjectMatchesByCollection('hltL2MuonCandidates').empty() && "+
@@ -434,9 +492,10 @@ LowPtTriggerFlagsEfficienciesTag = cms.PSet(
                                   " triggerObjectMatchesByCollection('hltIterL3MuonCandidates').at(0).hasFilterLabel('hltMu5L2Mu2JpsiTrackMassFiltered')"),
    Mu5_L2Mu3_Jpsi_MU = cms.string("!triggerObjectMatchesByCollection('hltIterL3MuonCandidates').empty() && "+
                                   " triggerObjectMatchesByCollection('hltIterL3MuonCandidates').at(0).hasFilterLabel('hltMu5L2Mu3JpsiTrackMassFiltered')"),
-   ## 2015
+ #  ## 2015
    Mu7p5_L2Mu2_Jpsi_MU = cms.string("!triggerObjectMatchesByCollection('hltIterL3MuonCandidates').empty() && "+
                                  " triggerObjectMatchesByCollection('hltIterL3MuonCandidates').at(0).hasFilterLabel('hltMu7p5L2Mu2JpsiTrackMassFiltered')"),
+
 
    ## Mu + TkMu
    ## 2015
@@ -448,8 +507,29 @@ LowPtTriggerFlagsEfficienciesTag = cms.PSet(
                                        ),
    SQMu7p5_L2Mu2_Jpsi_MU = cms.string("!triggerObjectMatchesByCollection('hltIterL3MuonCandidates').empty() && "+
                                  " triggerObjectMatchesByCollection('hltIterL3MuonCandidates').at(0).hasFilterLabel('hltSQMu7p5L2Mu2JpsiTrackMassFiltered')"),
-)
 
+
+)
+LowPtTestProbe = cms.PSet(
+
+   ## Mu + Track
+   ## 2012
+   Mu5_Track2_Jpsi_TK = cms.string("!triggerObjectMatchesByCollection('hltMuTrackJpsiEffCtfTrackCands').empty() && "+
+                                   " triggerObjectMatchesByCollection('hltMuTrackJpsiEffCtfTrackCands').at(0).hasFilterLabel('hltMu5Track2JpsiTrackMassFiltered')"),
+   Mu5_Track3p5_Jpsi_TK = cms.string("!triggerObjectMatchesByCollection('hltMuTrackJpsiEffCtfTrackCands').empty() && "+
+                                     " triggerObjectMatchesByCollection('hltMuTrackJpsiEffCtfTrackCands').at(0).hasFilterLabel('hltMu5Track3p5JpsiTrackMassFiltered')"),
+   Mu7_Track7_Jpsi_TK = cms.string("!triggerObjectMatchesByCollection('hltMuTrackJpsiCtfTrackCands').empty() && "+
+                                   " triggerObjectMatchesByCollection('hltMuTrackJpsiCtfTrackCands').at(0).hasFilterLabel('hltMu7Track7JpsiTrackMassFiltered')"),
+
+   ## 2015
+   Mu7p5_Track2_Jpsi_TK = cms.string("!triggerObjectMatchesByCollection('hltTracksIter').empty() && " +
+                                     " triggerObjectMatchesByCollection('hltTracksIter').at(0).hasFilterLabel('hltMu7p5Track2JpsiTrackMassFiltered')"),
+   Mu7p5_Track3p5_Jpsi_TK = cms.string("!triggerObjectMatchesByCollection('hltTracksIter').empty() && " +
+                                       " triggerObjectMatchesByCollection('hltTracksIter').at(0).hasFilterLabel('hltMu7p5Track3p5JpsiTrackMassFiltered')"),
+   Mu7p5_Track7_Jpsi_TK = cms.string("!triggerObjectMatchesByCollection('hltTracksIter').empty() && " +
+                                     " triggerObjectMatchesByCollection('hltTracksIter').at(0).hasFilterLabel('hltMu7p5Track7JpsiTrackMassFiltered')"),
+
+)
 LowPtTriggerFlagsEfficienciesProbe = cms.PSet(
 
    ## Mu + Track

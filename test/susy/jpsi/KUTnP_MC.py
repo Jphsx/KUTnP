@@ -1,6 +1,17 @@
 import FWCore.ParameterSet.Config as cms
+import FWCore.ParameterSet.VarParsing as VarParsing
+
 
 process = cms.Process("TagProbe")
+
+options = VarParsing.VarParsing('analysis')
+#options.inputFiles = 'empty1.root'
+#options.secondaryInputFiles = 'empty2.root'
+options.outputFile = "abc.root"
+options.parseArguments()
+
+
+
 
 process.load('Configuration.StandardSequences.Services_cff')
 process.load('FWCore.MessageService.MessageLogger_cfi')
@@ -8,12 +19,15 @@ process.options   = cms.untracked.PSet( wantSummary = cms.untracked.bool(True) )
 process.MessageLogger.cerr.FwkReport.reportEvery = 5000
 
 process.source = cms.Source("PoolSource", 
-    fileNames = cms.untracked.vstring(),
+    fileNames = cms.untracked.vstring(options.inputFiles),
+    secondaryFileNames = cms.untracked.vstring(options.secondaryInputFiles),
 )
 #process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1))
 #process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10))
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000))
+#process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100))
 #process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(50000))
+process.maxEvents = cms.untracked.PSet( input=cms.untracked.int32(options.maxEvents ))
+
 
 process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
 process.load('Configuration.StandardSequences.MagneticField_38T_cff')
@@ -23,22 +37,15 @@ process.load("Configuration.StandardSequences.Reconstruction_cff")
 import os
 if "CMSSW_10_2_" in os.environ['CMSSW_VERSION']:
     #process.GlobalTag.globaltag = cms.string('102X_upgrade2018_realistic_v15')
-    process.GlobalTag.globaltag = cms.string('94X_mc2017_realistic_v12')
-    process.source.fileNames = [
-	'/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/648DFFC7-4044-E811-A930-0025905C42A4.root',
-	'/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/6402B3CC-3144-E811-92AD-0025905C54C6.root',
-	'/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/5EEDE7C4-3D44-E811-98B3-0025905C4264.root',
-	'/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/5AAAB2E2-5044-E811-AA22-0CC47AF9B302.root',
-	'/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/5A88940A-5044-E811-8F5B-0025905C95FA.root',
-	'/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/5688FAEA-3544-E811-BFCA-0025905C3E36.root',
-	'/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/547C876E-4244-E811-A0BB-0025905D1CAC.root',
-	'/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/541DE75E-3344-E811-A707-0025904C68DE.root',
-	'/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/50E69914-3844-E811-A14E-0025905C3E36.root',
-	'/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/4C5F2AC2-4D44-E811-8472-0025905C94D0.root',	
-	#'/store/mc/RunIIFall17MiniAODv2/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14_ext1-v1/70000/B81792DC-4244-E811-8C5A-02163E01A0D0.root'
-	     
+    process.GlobalTag.globaltag = cms.string('94X_mc2017_realistic_v14')
+   #  process.GlobalTag.globaltag = cms.string('94X_dataRun2_ReReco_EOY17_v6')
+#	qqq= 1
+   # process.source.fileNames = options.inputFiles1
+   # process.source.secondaryFileNames = options.inputFiles2
+   
+#	'/store/mc/RunIIFall17DRPremix/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/AODSIM/RECOSIMstep_94X_mc2017_realistic_v10-v1/820000/5E7F1DB0-FA10-E811-B3EA-F01FAFE5CEFA.root'    
   	
-    ] 
+    
     
 
 else: raise RuntimeError, "Unknown CMSSW version %s" % os.environ['CMSSW_VERSION']
@@ -60,15 +67,15 @@ process.noScraping = cms.EDFilter("FilterOutScraping",
     thresh = cms.untracked.double(0.25)
 )
 #process.fastFilter = cms.Sequence(process.goodVertexFilter + process.noScraping)
-"""
-process.load("HLTrigger.HLTfilters.triggerResultsFilter_cfi")
-process.triggerResultsFilter.triggerConditions = cms.vstring( 'HLT_Mu*_L2Mu*' )
-process.triggerResultsFilter.l1tResults = ''
-process.triggerResultsFilter.throw = True
-process.triggerResultsFilter.hltResults = cms.InputTag( "TriggerResults", "", "HLT" )
-process.HLTMu   = process.triggerResultsFilter.clone(triggerConditions = [ 'HLT_Mu*_L2Mu*' ])
-process.HLTBoth = process.triggerResultsFilter.clone(triggerConditions = [ 'HLT_Mu*_L2Mu*', 'HLT_Mu*_Track*_Jpsi*' ])
-"""
+
+#process.load("HLTrigger.HLTfilters.triggerResultsFilter_cfi")
+#process.triggerResultsFilter.triggerConditions = cms.vstring( 'HLT_Mu*_L2Mu*' )
+#process.triggerResultsFilter.l1tResults = ''
+#process.triggerResultsFilter.throw = True
+#process.triggerResultsFilter.hltResults = cms.InputTag( "TriggerResults", "", "HLT" )
+#process.HLTMu   = process.triggerResultsFilter.clone(triggerConditions = [ 'HLT_Mu*_L2Mu*' ])
+#process.HLTBoth = process.triggerResultsFilter.clone(triggerConditions = [ 'HLT_Mu*_L2Mu*', 'HLT_Mu*_Track*_Jpsi*' ])
+
 
 
 ##    __  __                       
@@ -83,9 +90,12 @@ process.HLTBoth = process.triggerResultsFilter.clone(triggerConditions = [ 'HLT_
 process.load("MuonAnalysis.MuonAssociators.patMuonsWithTrigger_cff")
 ## with some customization
 from MuonAnalysis.MuonAssociators.patMuonsWithTrigger_cff import *
-changeRecoMuonInput(process, "slimmedMuons")
-#useL1Stage2Candidates(process)
-#appendL1MatchingAlgo(process)
+#changeRecoMuonInput(process, "slimmedMuons")
+useExistingPATMuons(process,"slimmedMuons")
+
+
+useL1Stage2Candidates(process)
+appendL1MatchingAlgo(process)
 #addHLTL1Passthrough(process)
 #changeTriggerProcessName(process, "*") # auto-guess
 
@@ -93,9 +103,9 @@ from MuonAnalysis.TagAndProbe.common_variables_cff import *
 process.load("MuonAnalysis.TagAndProbe.common_modules_cff")
 
 process.tagMuons = cms.EDFilter("PATMuonSelector",
-    src = cms.InputTag("slimmedMuons"),
-  #  src = cms.InputTag("patMuonsWithTrigger"),
-    cut = cms.string("(isGlobalMuon || numberOfMatchedStations > 1) && pt > 5"),
+ #   src = cms.InputTag("slimmedMuons"),
+    src = cms.InputTag("patMuonsWithTrigger"),
+    cut = cms.string("(isGlobalMuon || numberOfMatchedStations > 1) && pt > 5 && !triggerObjectMatchesByCollection('hltIterL3MuonCandidates').empty()"),
 )
 #if TRIGGER != "SingleMu":
 #    process.tagMuons.cut = ("pt > 6 && (isGlobalMuon || isTrackerMuon) && isPFMuon "+
@@ -104,9 +114,9 @@ process.tagMuons = cms.EDFilter("PATMuonSelector",
 process.oneTag  = cms.EDFilter("CandViewCountFilter", src = cms.InputTag("tagMuons"), minNumber = cms.uint32(1))
 
 process.probeMuons = cms.EDFilter("PATMuonSelector",
-    src = cms.InputTag("slimmedMuons"),
-   # src = cms.InputTag("patMuonsWithTrigger"),
-    cut = cms.string("track.isNonnull"),  # no real cut now
+  #  src = cms.InputTag("slimmedMuons"),
+    src = cms.InputTag("patMuonsWithTrigger"),
+    cut = cms.string("track.isNonnull && (!triggerObjectMatchesByCollection('hltTracksIter').empty() || !triggerObjectMatchesByCollection('hltMuTrackJpsiEffCtfTrackCands').empty() || !triggerObjectMatchesByCollection('hltMuTrackJpsiCtfTrackCands').empty() || !triggerObjectMatchesByCollection('hltL2MuonCandidates').empty())"),  # no real cut now
 )
 
 process.tpPairs = cms.EDProducer("CandViewShallowCloneCombiner",
@@ -146,7 +156,10 @@ process.tpTree = cms.EDAnalyzer("TagProbeFitTreeProducer",
     flags = cms.PSet(
        TrackQualityFlags,
        MuonIDFlags,
-
+	HighPtTriggerFlags,
+	LowPtTriggerFlagsEfficienciesTag,
+	LowPtTriggerFlagsPhysics,
+	LowPtTriggerFlagsEfficienciesProbe,
     ),
     tagVariables = cms.PSet(
        AllVariables,
@@ -154,6 +167,8 @@ process.tpTree = cms.EDAnalyzer("TagProbeFitTreeProducer",
         nVertices   = cms.InputTag("nverticesModule"),
        met = cms.InputTag("tagMetMt","met"),
         mt  = cms.InputTag("tagMetMt","mt"),
+	miniIsoAll = cms.InputTag("muonMiniIsoNano","miniIsoAll"),
+
    ),
     mcVariables = cms.PSet(),
  #       pt = cms.string('pt'),
@@ -162,7 +177,9 @@ process.tpTree = cms.EDAnalyzer("TagProbeFitTreeProducer",
  #       eta = cms.string('eta'),
  #       ),
     mcFlags = cms.PSet(),
-    tagFlags = cms.PSet( ),
+    tagFlags = cms.PSet(HighPtTriggerFlags,
+			LowPtTriggerFlagsEfficienciesTag,
+			LowPtTriggerFlagsPhysics ),
     pairVariables = cms.PSet(
     
         dz      = cms.string("daughter(0).vz - daughter(1).vz"),
@@ -209,13 +226,17 @@ process.tnpSimpleSequence = cms.Sequence(
 
 process.tagAndProbe = cms.Path(
     #process.HLTBoth * 
-   # process.patMuonsWithTriggerSequence *
+    process.patMuonsWithTriggerSequence *
     process.tnpSimpleSequence
 )
 
 
 #process.TFileService = cms.Service("TFileService", fileName = cms.string("tnpJ_MC.root"))
-process.TFileService = cms.Service("TFileService", fileName = cms.string("triggerMatchTest_MC.root"))
+#process.TFileService = cms.Service("TFileService", fileName = cms.string("triggerMatchTest_MC.root"))
+#process.TFileService = cms.Service("TFileService", fileName = options.outputFile )
+process.TFileService = cms.Service("TFileService", fileName = cms.string(options.outputFile) )
+
+"""
 if True: # enable and do cmsRun tp_from_aod_MC.py /eos/path/to/run/on [ extra_postfix ] to run on all files in that eos path 
     import sys
     args = sys.argv[1:]
@@ -232,3 +253,4 @@ if True: # enable and do cmsRun tp_from_aod_MC.py /eos/path/to/run/on [ extra_po
             process.TFileService.fileName = "tnpZ_MC_%s.root" % scenario
     if len(args) > 1:
         process.TFileService.fileName = process.TFileService.fileName.value().replace(".root", ".%s.root" % args[1])
+"""

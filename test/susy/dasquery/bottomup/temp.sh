@@ -1,10 +1,1 @@
-dasgoclient -query="parent file=/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/648DFFC7-4044-E811-A930-0025905C42A4.root"
-dasgoclient -query="parent file=/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/6402B3CC-3144-E811-92AD-0025905C54C6.root"
-dasgoclient -query="parent file=/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/5EEDE7C4-3D44-E811-98B3-0025905C4264.root"
-dasgoclient -query="parent file=/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/5AAAB2E2-5044-E811-AA22-0CC47AF9B302.root"
-dasgoclient -query="parent file=/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/5A88940A-5044-E811-8F5B-0025905C95FA.root"
-dasgoclient -query="parent file=/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/5688FAEA-3544-E811-BFCA-0025905C3E36.root"
-dasgoclient -query="parent file=/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/547C876E-4244-E811-A0BB-0025905D1CAC.root"
-dasgoclient -query="parent file=/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/541DE75E-3344-E811-A707-0025904C68DE.root"
-dasgoclient -query="parent file=/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/50E69914-3844-E811-A14E-0025905C3E36.root"
-dasgoclient -query="parent file=/store/mc/RunIIFall17MiniAODv2/JpsiToMuMu_JpsiPt8_TuneCP5_13TeV-pythia8/MINIAODSIM/PU2017RECOSIMstep_12Apr2018_94X_mc2017_realistic_v14-v1/50000/4C5F2AC2-4D44-E811-8472-0025905C94D0.root"
+dasgoclient -query="parent file=/store/data/Run2017C/SingleMuon/MINIAOD/31Mar2018-v1/100000/FAD1BDFD-8337-E811-9C8E-B499BAAC04AA.root" > ./ZmumuData/PRE1sublist_1.list

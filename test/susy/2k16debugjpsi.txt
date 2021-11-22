@@ -1,0 +1,6 @@
+Parent name: /store/mc/RunIISummer16DR80Premix/JpsiToMuMu_JpsiPt8_TuneCUEP8M1_13TeV-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/120000/06348846-C1C5-E611-A789-3417EBE64B4F.root
+Sources: dbs3 show
+Parent name: /store/mc/RunIISummer16DR80Premix/JpsiToMuMu_JpsiPt8_TuneCUEP8M1_13TeV-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/120000/86FD9BFB-B3C5-E611-8232-7845C4F92F93.root
+Sources: dbs3 show
+Parent name: /store/mc/RunIISummer16DR80Premix/JpsiToMuMu_JpsiPt8_TuneCUEP8M1_13TeV-pythia8/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/120000/F0D528C6-A6C5-E611-B92C-3417EBE64B4F.root
+Sources: dbs3 show

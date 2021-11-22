@@ -1,0 +1,11 @@
+ERROR: das exit with code: 2 , error: DBS unable to unmarshal the data into DAS record, api=files_via_dataset, data=&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;502 Proxy Error&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Proxy Error&lt;/h1&gt;
+&lt;p&gt;The proxy server received an invalid
+response from an upstream server.&lt;br /&gt;
+The proxy server could not handle the request &lt;em&gt;&lt;a href=&#34;/auth/complete/dbs/prod/global/DBSReader/files/&#34;&gt;GET&amp;nbsp;/auth/complete/dbs/prod/global/DBSReader/files/&lt;/a&gt;&lt;/em&gt;.&lt;p&gt;
+Reason: &lt;strong&gt;Error reading from remote server&lt;/strong&gt;&lt;/p&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+, error=invalid character &#39;&lt;&#39; looking for beginning of value
